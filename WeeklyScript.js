@@ -1,5 +1,7 @@
 //library array to store the books
-let library = [];
+let library = localStorage.getItem('items') ?
+JSON.parse(localStorage.getItem('items')) : [];
+
 
 //constructor function for book object
 function Book(id, title, author, isBorrowed){
@@ -63,9 +65,11 @@ const displayBooks = (books, tagId) =>{
 const addBook = (id, title, author) =>{
     const newbook = new Book(id, title, author);
     library.push(newbook);
+    localStorage.setItem('items', JSON.stringify(library));
 }
 
 const captureData = () =>{
+    // library = JSON.parse(localStorage.getItem('library'));
     const id = document.getElementById('id').value.trim();
     const title = document.getElementById("title").value.trim();
     const author = document.getElementById("author").value.trim();
